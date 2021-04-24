@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
         child: Container(
           height: SizeConfig.verticalBlockSize * 80,
           child: BlocProvider<AnagramsBloc>(
-            builder: (_) => sl<AnagramsBloc>(),
+            create: (_) => sl<AnagramsBloc>(),
             child: AnagramsFinder(),
           ),
         ),
@@ -76,7 +76,7 @@ class _AnagramsFinderState extends State<AnagramsFinder> {
               onEditingComplete: () {
                 textEditingController.clear();
                 BlocProvider.of<AnagramsBloc>(context)
-                    .dispatch(GetAnagramsForLetters(letters: input));
+                    .add(GetAnagramsForLetters(letters: input));
                 pageController.animateToPage(
                   1,
                   duration: Duration(seconds: 1),
@@ -97,15 +97,15 @@ class _AnagramsFinderState extends State<AnagramsFinder> {
             } else if (state is LoadedState) {
               return Center(
                 child: ListView(
-                  padding: EdgeInsets.only(top: SizeConfig.verticalBlockSize * 10),
+                  padding:
+                      EdgeInsets.only(top: SizeConfig.verticalBlockSize * 10),
                   physics: BouncingScrollPhysics(),
                   children: state.anagrams.all
                       .map(
                         (anagram) => ListTile(
                           title: Text(anagram,
                               style: questrialStyle.copyWith(
-                                fontSize: SizeConfig.horizontalBlockSize * 5
-                              ),
+                                  fontSize: SizeConfig.horizontalBlockSize * 5),
                               textAlign: TextAlign.center),
                         ),
                       )
@@ -118,8 +118,7 @@ class _AnagramsFinderState extends State<AnagramsFinder> {
                 state.errorMessage,
                 textAlign: TextAlign.center,
                 style: questrialStyle.copyWith(
-                    fontSize: SizeConfig.horizontalBlockSize * 6
-                ),
+                    fontSize: SizeConfig.horizontalBlockSize * 6),
               ));
             }
             return null;

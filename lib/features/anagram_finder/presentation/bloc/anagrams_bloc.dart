@@ -13,7 +13,7 @@ class AnagramsBloc extends Bloc<AnagramsEvent, AnagramsState> {
 
   AnagramsBloc({
     @required this.getAnagrams,
-  }) : assert(getAnagrams != null);
+  }) : assert(getAnagrams != null), super(null);
 
   @override
   AnagramsState get initialState => WaitingForInputState();

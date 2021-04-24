@@ -31,7 +31,7 @@ void main() {
       when(mockGetAnagrams(letters: anyNamed('letters')))
           .thenAnswer((_) => Future.value(Right(tAnagrams)));
       //act
-      anagramsBloc.dispatch(GetAnagramsForLetters(letters: tLetters));
+      anagramsBloc.add(GetAnagramsForLetters(letters: tLetters));
       await untilCalled(mockGetAnagrams(letters: anyNamed('letters')));
       //assert
       verify(mockGetAnagrams(letters: tLetters));
@@ -54,7 +54,7 @@ void main() {
         ]),
       );
       //act
-      anagramsBloc.dispatch(GetAnagramsForLetters(letters: tLetters));
+      anagramsBloc.add(GetAnagramsForLetters(letters: tLetters));
     },
   );
 
@@ -74,7 +74,7 @@ void main() {
         ]),
       );
       //act
-      anagramsBloc.dispatch(GetAnagramsForLetters(letters: tLetters));
+      anagramsBloc.add(GetAnagramsForLetters(letters: tLetters));
     },
   );
 
@@ -94,7 +94,7 @@ void main() {
         ]),
       );
       //act
-      anagramsBloc.dispatch(GetAnagramsForLetters(letters: tLetters));
+      anagramsBloc.add(GetAnagramsForLetters(letters: tLetters));
     },
   );
 }
